@@ -2,10 +2,10 @@
 
 # path to your llm
 LLM_MODEL=llama.cpp/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf 
-LLM_CONTEXT=8192 # if you use Llama 3.1 and don't specify this it'll OOM
+LLM_CONTEXT=8192 # if you use Llama 3.1 and don't specify this it'll OOM,means out of memory
 
 
-# Check if byobu is installed
+# Check if byobu is installed, it is a terminal multiplexer that makes it easy to manage multiple terminal windows
 if ! command -v byobu &> /dev/null; then
     echo "byobu is not installed. Please install it and try again."
     exit 1
@@ -21,6 +21,7 @@ create_window() {
 
 # Create a new byobu session named 'voicechat2' or attach to it if it already exists
 byobu new-session -d -s voicechat2
+# -s is the session name
 
 # FastAPI server (with Mamba activation)
 create_window "voicechat2" "mamba activate voicechat2 && uvicorn voicechat2:app --host 0.0.0.0 --port 8000 --reload"
@@ -36,6 +37,7 @@ create_window "tts" "mamba activate voicechat2 && uvicorn tts-server:app --host 
 
 # Attach to the session
 byobu attach-session -t voicechat2
+# -t  is the target session
 
 echo "Voice chat system is now running in byobu session 'voicechat2'."
 echo "To attach to the session, use: byobu attach -t voicechat2"
