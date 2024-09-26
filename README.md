@@ -61,7 +61,7 @@ make GGML_HIPBLAS=1 -j
 make GGML_CUDA=1 -j 
 
 # Grab your preferred GGUF model
-wget https://huggingface.co/bartowski/Meta-Llama-3-8B-Instruct-GGUF/resolve/main/Meta-Llama-3-8B-Instruct-Q4_K_M.gguf
+wget https://huggingface.co/bartowski/Meta-Llama-3.1-8B-Instruct-GGUF/resolve/main/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
 
 # If you're going to go to the next instruction
 cd ..
