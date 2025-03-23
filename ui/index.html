@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>voicechat2</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/symbl-opus-encdec@0.1.2/src/recorder.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.js"></script>
+    <script src="https://ai.shisa.ai/lib/symbl-opus-encdec/dist/recorder.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@ricky0123/vad-web@0.0.7/dist/bundle.min.js"></script>
     <style>
         body {
@@ -262,7 +262,7 @@
             const originalOndataavailable = this.ondataavailable;
             const originalOnstart = this.onstart;
             const originalOnstop = this.onstop;
-
+            console.log('inside encodeAudio');
             let encodedChunks = [];
 
             this.ondataavailable = (typedArray) => {
@@ -312,6 +312,7 @@
                             clearInterval(timerInterval);
 
                             try {
+                                console.log('Starting encoding...');
                                 opusBlob = await recorder.encodeAudio(audio);
                                 console.log("Encoding complete, blob size:", opusBlob.size);
                                 
@@ -337,6 +338,7 @@
                                     log('WebSocket is not open. Cannot send audio.');
                                 }
                             } catch (error) {
+                                console.log("hahahahhaha")
                                 console.error('Error encoding audio:', error);
                             }
 
@@ -501,7 +503,7 @@
         }
 
         let audioContext = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 16000 });
-
+        
         async function createSourceNode() {
             try {
                 const stream = await navigator.mediaDevices.getUserMedia({ audio: true });

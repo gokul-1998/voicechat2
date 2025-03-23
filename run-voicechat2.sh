@@ -29,16 +29,16 @@ byobu new-session -d -s voicechat2
 # -s is the session name
 
 # FastAPI server (with Mamba activation)
-create_window "voicechat2" "source /home/devzero/miniconda/bin/activate voicechat2 && uvicorn voicechat2:app --host 0.0.0.0 --port 8000 --reload"
+create_window "voicechat2" "source /home/gokul_articence/articence_repos/voice_chat/voicechat2/env/bin/activate voicechat2 && uvicorn voicechat2:app --host 0.0.0.0 --port 8000 --reload"
 
 # SRT server (HF transformers w/ distil-whisper)
-create_window "voicechat2" "source /home/devzero/miniconda/bin/activate voicechat2 && uvicorn srt-server:app --host 0.0.0.0 --port 8001 --reload"
+create_window "voicechat2" "source /home/gokul_articence/articence_repos/voice_chat/voicechat2/env/bin/activate voicechat2 && uvicorn srt-server:app --host 0.0.0.0 --port 8001 --reload"
 
 # LLM server (llama.cpp)
-create_window "llm" "llama.cpp/llama-server --host 127.0.0.1 --port 8002 -m $LLM_MODEL -ngl 99 -c $LLM_CONTEXT"
+create_window "llm" "llama.cpp/build/bin/llama-server --host 127.0.0.1 --port 8002 -m $LLM_MODEL -ngl 99 -c $LLM_CONTEXT"
 
 # TTS server (with Mamba activation)
-create_window "tts" "source /home/devzero/miniconda/bin/activate voicechat2 && uvicorn tts-server:app --host 0.0.0.0 --port 8003"
+create_window "tts" "source /home/gokul_articence/articence_repos/voice_chat/voicechat2/env/bin/activate voicechat2 && uvicorn tts-server:app --host 0.0.0.0 --port 8003"
 
 # Attach to the session
 byobu attach-session -t voicechat2
